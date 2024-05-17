@@ -7,14 +7,9 @@
     <title>{{ title }}</title>
   </head>
   <body>
-    {% extends "layouts/base.html" %} 
-    {% block content %}
-    <article>
-        <h1>   
-            {{ title }}
-        </h1>
-        {{content | safe}}
-    </article>
-    {% endblock %}
+    {% include "partials/site-head.html" %}
+    <main tabindex="-1" id="main-content">{% block content %}{% endblock %}
+
+    </main>
   </body>
 </html>
