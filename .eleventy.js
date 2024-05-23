@@ -6,12 +6,21 @@
 // LAST UPDATED: 5/22/2024
 ///
 
+// Filters
+const dateFilter = require('./src/filters/date-filter.js');
+const w3DateFilter = require('./src/filters/w3-date-filter.js');
+
 //Variables
 const sortByDisplayOrder = require('./src/utils/sort-by-display-order.js');
 
 
 module.exports = config =>
 {
+
+    // Add filters
+    config.addFilter('dateFilter', dateFilter);
+    config.addFilter('w3DateFilter', w3DateFilter);
+    
     //Set directories to pass through to the dist folder
     config.addPassthroughCopy('./src/images/');
 
@@ -31,7 +40,12 @@ module.exports = config =>
             .filter(x => x.data.featured);
     });
 
-    //Return function
+    //Returns a collection of blog posts in reverse date order
+    config.addCollection('blog', collection =>{
+        return [...collection.getFilteredByGlob('./src/posts/*.md')].reverse();
+    });
+
+    //Returns function nunjucks declarations
     return{
 
         //Nunjucks statement declarations
@@ -44,7 +58,4 @@ module.exports = config =>
             output: 'dist'
         }
     };
-
-
-
 };
