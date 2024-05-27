@@ -3,7 +3,7 @@
 // PURPOSE: A config module that allows specific methods that are called on the website, using 11ty and nunjacks.
 // MADE BY: Kernen Yabut
 // DATE CREATED: 5/22/2024
-// LAST UPDATED: 5/22/2024
+// LAST UPDATED: 5/27/2024
 ///
 
 // Filters
@@ -20,7 +20,7 @@ module.exports = config =>
     // Add filters
     config.addFilter('dateFilter', dateFilter);
     config.addFilter('w3DateFilter', w3DateFilter);
-    
+
     //Set directories to pass through to the dist folder
     config.addPassthroughCopy('./src/images/');
 
@@ -43,6 +43,13 @@ module.exports = config =>
     //Returns a collection of blog posts in reverse date order
     config.addCollection('blog', collection =>{
         return [...collection.getFilteredByGlob('./src/posts/*.md')].reverse();
+    });
+
+    //Returns a list of people ordered by filename
+    config.addCollection('people', collection =>{
+        return collection.getFilteredByGlob('./src/people/*.md').sort((a, b) => {
+            return Number(a.fileSlug) > Number(b.fileSlug) ? 1 : -1;
+          });
     });
 
     //Returns function nunjucks declarations
