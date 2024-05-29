@@ -1,5 +1,6 @@
 ---
 title: 'Kernen Yabut'
+metaDesc: 'The groundwork for my personal website using the tutorial; Learn Eleventy From Scratch, by Piccalilli'
 layout: 'layouts/home.html'
 intro:
     eyebrow: 'Digital Marketing is our'

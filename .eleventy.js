@@ -3,12 +3,16 @@
 // PURPOSE: A config module that allows specific methods that are called on the website, using 11ty and nunjacks.
 // MADE BY: Kernen Yabut
 // DATE CREATED: 5/22/2024
-// LAST UPDATED: 5/27/2024
+// LAST UPDATED: 5/29/2024
 ///
 
 // Filters
 const dateFilter = require('./src/filters/date-filter.js');
 const w3DateFilter = require('./src/filters/w3-date-filter.js');
+
+//Plugins
+const rssPlugin = require('@11ty/eleventy-plugin-rss');
+
 
 //Variables
 const sortByDisplayOrder = require('./src/utils/sort-by-display-order.js');
@@ -20,6 +24,9 @@ module.exports = config =>
     // Add filters
     config.addFilter('dateFilter', dateFilter);
     config.addFilter('w3DateFilter', w3DateFilter);
+
+    //Adds plugins
+    config.addPlugin(rssPlugin);
 
     //Set directories to pass through to the dist folder
     config.addPassthroughCopy('./src/images/');
