@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": ".eleventy.js",
   "scripts": {
-    "start": "npx eleventy --serve"
+    "start": "npx gulp && concurrently \"npx gulp watch\" \"npx eleventy --serve\"",
+    "production": "NODE_ENV=production npx gulp && NODE_ENV=production npx eleventy"
   },
   "keywords": [],
   "author": "",
@@ -12,6 +13,8 @@
   "dependencies": {
     "@11ty/eleventy": "^2.0.1",
     "@11ty/eleventy-cache-assets": "^2.3.0",
+    "concurrently": "^8.2.2",
+    "get-google-fonts": "^1.2.2",
     "gulp": "^5.0.0",
     "moment": "^2.30.1"
   },

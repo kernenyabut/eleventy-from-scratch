@@ -3,7 +3,7 @@
 // PURPOSE: A config module that allows specific methods that are called on the website, using 11ty and nunjacks.
 // MADE BY: Kernen Yabut
 // DATE CREATED: 5/22/2024
-// LAST UPDATED: 5/29/2024
+// LAST UPDATED: 5/30/2024
 ///
 
 // Filters
@@ -58,6 +58,9 @@ module.exports = config =>
             return Number(a.fileSlug) > Number(b.fileSlug) ? 1 : -1;
           });
     });
+
+    // Tell 11ty to use the .eleventyignore and ignore our .gitignore file
+    config.setUseGitIgnore(false);
 
     //Returns function nunjucks declarations
     return{
